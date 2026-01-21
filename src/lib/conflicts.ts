@@ -1,6 +1,6 @@
 import type { Reservation } from "@/types/reservation"
 
-type ConflictGroup = {
+export type ConflictGroup = {
   roomId: string
   roomName: string
   date: string

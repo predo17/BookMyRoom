@@ -7,7 +7,7 @@ export default function Header() {
   const { pathname } = useLocation()
 
   return (
-    <header className="sticky top-0 z-50 flex w-full items-center justify-between gap-4 border-b border-border bg-background/95 px-4 py-3 backdrop-blur supports-backdrop-filter:bg-background/60">
+    <header className="sticky top-0 z-40 flex w-full items-center justify-between gap-4 border-b border-border bg-background/95 px-4 py-3 backdrop-blur supports-backdrop-filter:bg-background/60">
       <Link to="/" className="text-2xl font-bold tracking-tight hover:opacity-90">
         BookMyRoom
       </Link>

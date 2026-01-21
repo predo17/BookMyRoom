@@ -1,4 +1,4 @@
-import Admin from "@/components/layout/Adim";
+import Admin from "@/components/layout/Admin";
 
 export default function AdminPage() {
   return (

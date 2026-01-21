@@ -10,10 +10,6 @@ type Props = {
 }
 
 export function RoomCard({ room }: Props) {
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = room.img;
-    e.currentTarget.alt = 'Imagem indisponível';
-  };
 
   return (
     <Card className="relative z-10 p-0 hover:shadow-lg transition-shadow duration-300">
@@ -24,7 +20,6 @@ export function RoomCard({ room }: Props) {
             src={room.img}
             alt={room.name}
             className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            onError={handleImageError}
             loading="lazy"
           />
         </div>
