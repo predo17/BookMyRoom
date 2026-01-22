@@ -1,3 +1,5 @@
+![bookmyroom](public/bookmyroom.png) 
+
 # 🏢 Sistema de Reserva de cômodos BookMyRoom
 
 Sistema para reservas de cômodos por data e horário. Usuários fazem reservas e veem as próprias; administradores gerenciam cômodos, reservas e conflitos de agenda.
@@ -33,6 +35,12 @@ Dados persistidos em **localStorage** (cômodos, reservas, nome do usuário). Pr
 ## 🚀 Como rodar
 
 ```bash
+# Clone o repositório
+git clone https://github.com/predo17/BookMyRoom.git
+
+# Entre no diretório do projeto
+cd bookmyroom
+
 # Instalar dependências
 npm install
 
@@ -95,7 +103,6 @@ src/
 | Funcionalidade | Onde | Detalhes |
 |----------------|------|----------|
 | Ver salas      | `/`  | Lista com nome, capacidade, projetor |
-| Reservar       | `RoomCard` → `/reservation?room=id` | Botão “Reservar” leva à tela com cômodos já escolhida |
 | Formulário     | `/reservation` | Nome, cômodo, **data** (min = hoje), **horário** (slots 8h–18h) |
 | Horários       | `/reservation` | Apenas horários **livres**; ocupados desabilitados |
 | Criar reserva  | `/reservation` | Validações (nome, data não passada, horário disponível) |
@@ -113,7 +120,7 @@ src/
 
 ### 🗂️ Regras de Negócio
 
-* Uma cômodos **não pode** ser reservada no mesmo horário por dois usuários → slots ocupados **não são exibidos como selecionáveis**.
+* Um cômodo **não pode** ser reservado no mesmo horário por dois usuários → slots ocupados **não são exibidos como selecionáveis**.
 * **Datas passadas** não podem ser selecionadas → `min` do `<input type="date">` e checagem em `isPastDate`.
 * **Horários inválidos** bloqueados → somente slots retornados por `getAvailableSlots` são clicáveis.
 

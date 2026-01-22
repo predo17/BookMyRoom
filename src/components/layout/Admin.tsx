@@ -26,7 +26,7 @@ export default function Admin() {
   const [form, setForm] = useState<Partial<Room> & { name?: string }>({
     name: "",
     img: "",
-    capacity: 10,
+    capacity: undefined,
     hasProjector: false,
   })
 
@@ -72,7 +72,7 @@ export default function Admin() {
   const startNew = () => {
     setShowNewRoom(true)
     setEditingRoomId(null)
-    setForm({ name: "", img: "", capacity: 10, hasProjector: false })
+    setForm({ name: "", img: "", capacity: undefined, hasProjector: false })
     setImgInputMode("url")
     setImgLoading(false)
   }
@@ -84,7 +84,7 @@ export default function Admin() {
         updateRoom(editingRoomId, {
           name,
           img: img ?? "",
-          capacity: capacity ?? 10,
+          capacity: capacity ?? 2,
           hasProjector: hasProjector ?? false,
         })
       setEditingRoomId(null)
@@ -92,11 +92,11 @@ export default function Admin() {
       addRoom({
         name: form.name,
         img: form.img ?? "",
-        capacity: form.capacity ?? 10,
+        capacity: form.capacity ?? 2,
         hasProjector: form.hasProjector ?? false,
       })
       setShowNewRoom(false)
-      setForm({ name: "", img: "", capacity: 10, hasProjector: false })
+      setForm({ name: "", img: "", capacity: undefined, hasProjector: false })
     }
   }
 

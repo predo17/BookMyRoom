@@ -3,23 +3,23 @@ import type { Room } from "../types/room"
 export const rooms: Room[] = [
     {
         id: '1',
-        name: 'Sala 1',
+        name: 'Quarto',
         img: '/quarto-1.avif',
-        capacity: 10,
+        capacity: 2,
         hasProjector: true
     },
     {
         id: '2',
-        name: 'Sala 2',
-        img: 'https://pixabay.com/pt/images/download/bedroom-389254_1280.jpg',
-        capacity: 15,
+        name: 'Sala de estar',
+        img: '/sala_estar.webp',
+        capacity: 6,
         hasProjector: false
     },
     {
         id: '3',
-        name: 'Sala 3',
-        img: 'https://pixabay.com/pt/images/download/bedroom-389254_1280.jpg',
-        capacity: 20,
+        name: 'Sala de reunião',
+        img: '/sala_reuniao.avif',
+        capacity: 8,
         hasProjector: true
     }
 ]

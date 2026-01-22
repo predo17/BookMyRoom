@@ -1,5 +1,5 @@
-const START_HOUR = 8
-const END_HOUR = 18
+const START_HOUR = 0
+const END_HOUR = 23
 
 /** Slots de 1 hora: 08:00, 09:00, ... 17:00 */
 export function getTimeSlots(): string[] {
@@ -27,4 +27,22 @@ export function isPastDate(dateStr: string): boolean {
 /** Retorna a data mínima selecionável (hoje) em YYYY-MM-DD */
 export function getMinDate(): string {
   return new Date().toISOString().slice(0, 10)
+}
+/** Retorna true se o horário já passou para a data selecionada */
+export function isPastTimeSlot(
+  dateStr: string,
+  slot: string
+): boolean {
+  const now = new Date()
+
+  // Se não for hoje, não é horário passado
+  const todayStr = now.toISOString().slice(0, 10)
+  if (dateStr !== todayStr) return false
+
+  const [hour] = slot.split(":").map(Number)
+
+  const slotDate = new Date()
+  slotDate.setHours(hour, 0, 0, 0)
+
+  return slotDate <= now
 }

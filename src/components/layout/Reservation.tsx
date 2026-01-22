@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useSearchParams, useNavigate } from "react-router-dom"
 import { useBookMyRoom } from "@/context/BookMyRoomContext"
-import { getMinDate, isPastDate, getTimeSlots, formatSlotLabel } from "@/lib/slots"
+import { getMinDate, isPastDate, getTimeSlots, formatSlotLabel, isPastTimeSlot } from "@/lib/slots"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -19,7 +19,7 @@ export default function Reservation() {
   } = useBookMyRoom()
 
   const roomIdParam = search.get("room")
-  const room = rooms.find((r) => r.id === roomIdParam) ?? rooms[0]
+  const room = rooms.find((r) => r.id === roomIdParam) ?? undefined
 
   const [roomId, setRoomId] = useState(room?.id ?? "")
   const [date, setDate] = useState(getMinDate())
@@ -58,10 +58,6 @@ export default function Reservation() {
       setError("Não é possível reservar em data passada.")
       return
     }
-    if (!availableSlots.includes(timeSlot)) {
-      setError("Este horário não está disponível.")
-      return
-    }
 
     const r = rooms.find((x) => x.id === roomId)
     if (!r) {
@@ -83,7 +79,7 @@ export default function Reservation() {
     setTimeout(() => {
       setSuccess(false)
       navigate("/")
-    }, 1500)
+    }, 1300)
   }
 
   const allSlots = getTimeSlots()
@@ -143,20 +139,19 @@ export default function Reservation() {
               <Label>Horário</Label>
               <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
                 {allSlots.map((slot) => {
-                  const available = availableSlots.includes(slot)
+                  const available = availableSlots.includes(slot) && !isPastTimeSlot(date, slot)
                   return (
                     <button
                       key={slot}
                       type="button"
                       disabled={!available}
                       onClick={() => setTimeSlot(available ? slot : timeSlot)}
-                      className={`rounded-md border px-3 py-2 text-sm font-medium transition-colors ${
-                        timeSlot === slot
+                      className={`rounded-md border px-3 py-2 text-sm font-medium transition-colors ${timeSlot === slot
                           ? "border-primary bg-primary text-primary-foreground"
                           : available
                             ? "border-input hover:bg-accent"
                             : "cursor-not-allowed border-input bg-muted text-muted-foreground opacity-60"
-                      }`}
+                        }`}
                     >
                       {formatSlotLabel(slot)}
                     </button>
@@ -164,7 +159,7 @@ export default function Reservation() {
                 })}
               </div>
               {date && isPastDate(date) && (
-                <p className="text-sm text-muted-foreground">Selecione uma data futura ou hoje.</p>
+                <p className="text-sm text-destructive">Selecione uma data futura ou hoje.</p>
               )}
             </div>
 
