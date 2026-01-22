@@ -28,7 +28,7 @@ export default function Reservation() {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
 
-  // Sincronizar sala da URL
+  // Sincronizar cômodo da URL
   useEffect(() => {
     if (room?.id && !roomId) setRoomId(room.id)
   }, [room?.id, roomId])
@@ -112,15 +112,15 @@ export default function Reservation() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="room">Sala</Label>
+              <Label htmlFor="room">Cômodo</Label>
               <select
                 id="room"
                 value={roomId}
                 onChange={(e) => setRoomId(e.target.value)}
                 className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <option value="">Selecione uma sala</option>
-                {rooms.map((r) => (
+                <option value="">Selecione um cômodo</option>
+                {rooms?.map((r) => (
                   <option key={r.id} value={r.id}>
                     {r.name} ({r.capacity} pessoas)
                   </option>

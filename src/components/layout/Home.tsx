@@ -20,10 +20,10 @@ export default function Home() {
     <section className="w-full max-w-7xl mx-auto space-y-8 p-6 ">
 
 
-      <div className="flex flex-col lg:flex-row-reverse lg:gap-4">
+      <div className="flex flex-col-reverse lg:flex-row-reverse lg:gap-4">
 
-        <div className="lg:w-1/2">
-          <h2 className="text-xl font-semibold mb-2">Cômodos disponíveis</h2>
+        <div className="lg:w-1/2 mt-8 lg:mt-0">
+          <h2 className="text-xl font-semibold mb-4">Cômodos disponíveis</h2>
 
           <div className="space-y-4 ">
             {rooms.map((room) => (
@@ -32,27 +32,29 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="lg:w-1/2 w-full max-w-2xl max-h-max space-y-4 ">
+        <div className="lg:w-1/2 w-full  max-h-max space-y-4 ">
           <h2 className="flex items-center gap-2 text-xl font-semibold mb-4"><Search /> Buscar reservas</h2>
 
-          <div className="flex flex-wrap items-end gap-2">
-            <div className="flex-1 min-w-50 space-y-1">
-              <label htmlFor="my-name" className="text-sm font-medium flex items-center gap-1">
-                <User className="size-4" />
-                Nome para identificar suas reservas
-              </label>
-              <Input
-                id="my-name"
-                value={inputName}
-                onChange={(e) => setInputName(e.target.value)}
-                onBlur={handleSetUser}
-                onKeyDown={(e) => e.key === "Enter" && handleSetUser()}
-                placeholder="Ex: Maria"
-              />
+          <div className="flex flex-col gap-2">
+            <label htmlFor="my-name" className="text-sm font-medium flex items-start gap-1 ">
+              <User className="size-4 mt-0.5" />
+              Nome para identificar suas reservas
+            </label>
+            <div className="flex gap-2">
+              <div className="flex-1 min-w-50 space-y-1">
+                <Input
+                  id="my-name"
+                  value={inputName}
+                  onChange={(e) => setInputName(e.target.value)}
+                  onBlur={handleSetUser}
+                  onKeyDown={(e) => e.key === "Enter" && handleSetUser()}
+                  placeholder="Ex: Maria"
+                />
+              </div>
+              <Button variant="outline" onClick={handleSetUser}>
+                Atualizar
+              </Button>
             </div>
-            <Button variant="outline" onClick={handleSetUser}>
-              Atualizar
-            </Button>
           </div>
 
           <Card>

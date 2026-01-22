@@ -39,7 +39,6 @@ export default function AdminRoomForm({
   onSave,
   onCancel,
   isEditing,
-  nameExists = false,
 }: Props) {
   const [imgError, setImgError] = useState(false)
 
@@ -52,7 +51,6 @@ export default function AdminRoomForm({
     !!form.img &&
     !imgError &&
     !imgLoading
-    !nameExists
 
   return (
     <div className="rounded-lg border bg-muted/30 space-y-3 p-4">
@@ -64,11 +62,6 @@ export default function AdminRoomForm({
             onChange={(e) => onFormChange({ name: e.target.value })}
             placeholder="Ex: Sala de reuniões 1"
           />
-          {nameExists && (
-            <p className="text-sm text-red-500">
-              Este nome já 
-            </p>
-          )}
         </div>
         <div className="space-y-1">
           <Label>Capacidade</Label>

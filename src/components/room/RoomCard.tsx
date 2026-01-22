@@ -68,22 +68,3 @@ export function RoomCard({ room }: Props) {
     </Card>
   );
 }
-// Componente de fallback para carregamento
-export function RoomCardSkeleton() {
-  return (
-    <Card className="relative z-10 animate-pulse">
-      <CardContent className="p-0 flex flex-col">
-        <div className="rounded-t-xl overflow-hidden h-60 bg-gray-200" />
-        <div className="p-6 space-y-4">
-          <div className="h-6 bg-gray-200 rounded w-3/4" />
-          <div className="h-4 bg-gray-200 rounded w-1/2" />
-          <div className="flex gap-2">
-            <div className="h-6 bg-gray-200 rounded w-20" />
-            <div className="h-6 bg-gray-200 rounded w-24" />
-          </div>
-          <div className="h-10 bg-gray-200 rounded w-full mt-6" />
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
